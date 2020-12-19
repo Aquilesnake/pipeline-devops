@@ -8,8 +8,15 @@ pipeline {
             steps{
                 script{
                     echo 'herramienta seleccionada: ' + params.compilador
-                    def pipe = load "${params.compilador}.groovy"
-                    pipe.call()
+                    /*"${params.compilador}".call()*/
+                    /*def pipe = load "${params.compilador}.groovy"
+                    pipe.call()*/
+                    if(params.compilador == 'gradle'){
+                        gradle.call()
+                    }else {
+                        maven.call()
+
+                    }
                 }
             }
         }
