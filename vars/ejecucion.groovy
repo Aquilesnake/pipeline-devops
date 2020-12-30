@@ -3,6 +3,8 @@ def call(){
     pipeline {
         agent any
         parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')}
+        string {name: 'stage', defaultValue:'', description ''}
+
         stages{
             stage('pipeline'){
                 steps{
