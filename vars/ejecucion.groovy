@@ -2,8 +2,8 @@ def call(){
 
     pipeline {
         agent any
-        parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')}
-        string {name: 'stage', defaultValue:'', description ''}
+        parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')}
+        parameters { choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
 
         stages{
             stage('pipeline'){
@@ -13,13 +13,24 @@ def call(){
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
-                        if(params.compilador == 'gradle'){
-                            gradle.call()
-                        }else {
-                            maven.call()
+                        if(params.stage == 'gradle' && params.sub_stage == 'build'){
+                            gradle.call('build & test')
+                            }  if else {params.stage == 'gradle' && params.stage == 'build,test y run'
+                                gradle.call('build & test')
+                                gradle.call('run')
+                                    }else {params.compilador == 'gradle' && params.stage == 'fullbuild'
+                                        gradle.call('')
+                                    }               
+                        if(params.stage == 'maven' && params.sub_stage == 'build'){
+                            gradle.call('build & test')
+                            }  if else {params.stage == 'maven' && params.stage == 'build,test y run'
+                                gradle.call('build & test')
+                                gradle.call('run')
+                                    }else {params.compilador == 'maven' && params.stage == 'fullbuild'
+                                        gradle.call('')
+                                    }     
 
-                        }
-                    }
+                        }  
                 }
             }
         }

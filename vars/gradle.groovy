@@ -5,10 +5,12 @@ def ejecucion = load 'script.groovy'
 ejecucion.call()
 
 */
+
+
 def call (){
         stage('build & test'){
-			bat './gradlew clean build'
-	}
+            bat './gradlew clean build'
+    }
     stage('sonar') {
          def scannerHome = tool 'sonar';
              withSonarQubeEnv('sonar') {
