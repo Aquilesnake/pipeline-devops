@@ -15,18 +15,18 @@ def call(){
                         pipe.call()*/
                         if(params.stage == 'gradle' && params.sub_stage == 'build'){
                             gradle.call('build & test')
-                            }  if else {params.stage == 'gradle' && params.stage == 'build,test y run'
+                            }  if else {params.stage == 'gradle' && params.sub_stage == 'build,test y run'
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else {params.compilador == 'gradle' && params.stage == 'fullbuild'
+                                    }else {params.compilador == 'gradle' && params.sub_stage == 'fullbuild'
                                         gradle.call('')
                                     }               
                         if(params.stage == 'maven' && params.sub_stage == 'build'){
                             gradle.call('build & test')
-                            }  if else {params.stage == 'maven' && params.stage == 'build,test y run'
+                            }  if else {params.stage == 'maven' && params.sub_stage == 'build,test y run'
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else {params.compilador == 'maven' && params.stage == 'fullbuild'
+                                    }else {params.compilador == 'maven' && params.sub_stage == 'fullbuild'
                                         gradle.call('')
                                     }     
 
