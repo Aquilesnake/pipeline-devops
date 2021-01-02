@@ -2,8 +2,8 @@ def call(){
 
     pipeline {
         agent any
-        parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')}
-        parameters { choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
+        parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
+                     choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
 
         stages{
             stage('pipeline'){
@@ -18,7 +18,7 @@ def call(){
                             }else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.stage == 'gradle' && params.sub_stage == 'fullbuild'){
+                                    }else(params.compilador == 'gradle' && params.sub_stage == 'fullbuild'){
                                         gradle.call('')
                                     }               
                         if(params.stage == 'maven' && params.sub_stage == 'build'){
@@ -26,7 +26,7 @@ def call(){
                             }else if(params.stage == 'maven' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.stage == 'maven' && params.sub_stage == 'fullbuild'){
+                                    }else(params.compilador == 'maven' && params.sub_stage == 'fullbuild'){
                                         gradle.call('')
                                     }     
 
