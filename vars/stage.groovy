@@ -1,5 +1,5 @@
 //stage.groovy
-def call(String stage, String sub_stage){
+def call(String compilador, String sub_stage){
 
     println 'asdasdasd aEjecución de Pipeline'
 
