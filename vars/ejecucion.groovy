@@ -4,8 +4,9 @@ def call(){
     pipeline {
         agent any
         parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion')}
-        /* groovylint-disable-next-line LineLength */
-        string {name: 'sub_stage', defaultValue:'', description:'Selección de stage')}
+        string { name: 'sub_stage', defaultValue:'', description:'Selección de stage.
+        Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease.
+        Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
         /* groovylint-disable-next-line LineLength */
         /*parameters { choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}*/
 
