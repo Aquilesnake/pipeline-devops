@@ -4,7 +4,7 @@ def call(){
     pipeline {
         agent any
         parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion')}
-        string { name: 'Stage', defaultValue:'', description:'Selección de stage.
+        string { name: 'sub_stage', defaultValue:'', description:'Selección de stage.
         Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease.
         Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
         /* groovylint-disable-next-line LineLength */
@@ -14,7 +14,7 @@ def call(){
             stage('pipeline'){
                 steps{
                     script{
-                        echo 'herramienta seleccionada: ' + params.compilador
+                        echo 'herramienta seleccionada: ' + params.stage
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
@@ -23,7 +23,7 @@ def call(){
                             }else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.compilador == 'gradle' && params.sub_stage == 'fullbuild'){
+                                    }else(params.stage == 'gradle' && params.sub_stage == 'fullbuild'){
                                         gradle.call('')
                                     }               
                         if(params.stage == 'maven' && params.sub_stage == 'build'){
@@ -31,7 +31,7 @@ def call(){
                             }else if(params.stage == 'maven' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.compilador == 'maven' && params.sub_stage == 'fullbuild'){
+                                    }else(params.stage == 'maven' && params.sub_stage == 'fullbuild'){
                                         gradle.call('')
                                     }     
 
