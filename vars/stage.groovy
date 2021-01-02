@@ -14,7 +14,6 @@ def call(String stage, String sub_stage){
                     script{
                         try {
 
-                            def funciones   = new Funciones()
 
                             stage('Inicio'){
                                 println 'Inicio'
