@@ -5,7 +5,7 @@ def call(){
         agent any
         parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
                      choice(name: 'stage', choices:['build','build;test;run','fullbuild'], description:'Construccion por stages')}
-        stages{
+       /* stages{
             stage('pipeline'){
                 steps{
                     script{
@@ -32,10 +32,10 @@ def call(){
                                         gradle.call()
                                     }     
 
-                        }  */
+                        }  
                     }
                 }
-            }
+            }*/
         }
     }
 } 
