@@ -1,9 +1,9 @@
 def call(String compilador,String sub_stage){
+    echo 'complilador'+compilador
         stages{
             stage('pipeline'){
                 steps{
                     script{
-                        echo 'herramienta seleccionada: ' + params.compilador
                        // def pipe = load "${params.compilador}.groovy"
                        // pipe.call()
 

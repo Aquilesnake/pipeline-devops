@@ -5,7 +5,7 @@ def call(){
         parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
                   //   choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
      string(name:'Stage',defaultValue:'',description:'''Selección de stage.Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease.
-Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease''')}
+     Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease''')}
 
         stages{
             stage('pipeline'){
@@ -16,8 +16,8 @@ Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease'''
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
                         if(params.stage == 'gradle' && params.sub_stage == 'build'){
-                            gradle.call('build & test')
-                            }else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
+                            stage.call('gradle','build & test')
+                            }/*else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
                                     }else(params.compilador == 'gradle' && params.sub_stage == 'fullbuild'){
@@ -32,11 +32,11 @@ Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease'''
                                         gradle.call('')
                                     }     
 
-                        }  
+                        }  */
+                   }
                 }
             }
         }
-
     }
 }
 return this;
