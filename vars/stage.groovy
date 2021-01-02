@@ -1,4 +1,4 @@
-def call(){
+def call(String compilador,String sub_stage){
         stages{
             stage('pipeline'){
                 steps{

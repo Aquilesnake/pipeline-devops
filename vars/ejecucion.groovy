@@ -1,6 +1,7 @@
 //import ejecucion.groovy.*
-
+echo "AAAAAAAAAAAAAAAAAAAAAAA"
 def call(){
+    
     pipeline {
         agent any
         parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
