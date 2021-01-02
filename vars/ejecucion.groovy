@@ -21,7 +21,7 @@ def call(){
                                 gradle.call('build & test')
                                 gradle.call('run')
                                     }else(params.compilador == 'gradle' && params.stage == 'fullbuild'){
-                                        gradle.call('')
+                                        gradle.call()
                                     }
                         if(params.compilador == 'maven' && params.stage == 'build'){
                             gradle.call('build & test')
@@ -29,7 +29,7 @@ def call(){
                                 gradle.call('build & test')
                                 gradle.call('run')
                                     }else(params.compilador == 'maven' && params.stage == 'fullbuild'){
-                                        gradle.call('')
+                                        gradle.call()
                                     }     
 
                         }  
