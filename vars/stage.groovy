@@ -10,20 +10,20 @@ def call(){
                     script{
                         try {
                         if(compilador == 'gradle' && sub_stage == 'build'){
-                            gradle.call('build & test')
+                         //   gradle.call('build & test')
                             }else if(compilador == 'gradle' && sub_stage == 'build;test;run'){
-                                gradle.call('build & test')
-                                gradle.call('run')
+                          //      gradle.call('build & test')
+                         //       gradle.call('run')
                                     }else(compilador == 'gradle' && sub_stage == 'fullbuild'){
-                                        gradle.call()
+                          //              gradle.call()
                                     }
                         if(compilador == 'maven' && sub_stage == 'build'){
-                            gradle.call('build & test')
+                           // gradle.call('build & test')
                             }else if(compilador == 'maven' && sub_stage == 'build,test;run'){
-                                gradle.call('build & test')
-                                gradle.call('run')
+                           //     gradle.call('build & test')
+                           //     gradle.call('run')
                                     }else(compilador == 'maven' && sub_stage == 'fullbuild'){
-                                        gradle.call()
+                            //            gradle.call()
                                     }
                             } catch(Exception e) {
                                 error ('Ha ocurrido el siguiente error: ' + e)
