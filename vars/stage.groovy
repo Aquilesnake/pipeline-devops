@@ -1,35 +1,39 @@
-//stage.groovy
-def call(java.lang.String uno, org.jenkinsci.plugins.workflow.cps.CpsClosure2 dos){
-    println 'asdasdasd aEjecución de Pipeline'
+def call(){
+        stages{
+            stage('pipeline'){
+                steps{
+                    script{
+                        echo 'herramienta seleccionada: ' + params.compilador
+                        def pipe = load "${params.compilador}.groovy"
+                        pipe.call()
 
-            stage('cualquiewa'){
-            
-                        try {
-                        if(compilador == 'gradle' && sub_stage == 'build'){
-                         //   gradle.call('build & test')
-                            }else if(compilador == 'gradle' && sub_stage == 'build;test;run'){
-                          //      gradle.call('build & test')
-                         //       gradle.call('run')
-                                    }else(compilador == 'gradle' && sub_stage == 'fullbuild'){
-                          //              gradle.call()
+                        /*"${params.compilador}".call()*/
+                        /*def pipe = load "${params.compilador}.groovy"
+                        pipe.call()*/
+                   /*     if(params.compilador == 'gradle' && params.stage == 'build'){
+                            gradle.call('build & test')
+                            }else if(params.compilador == 'gradle' && params.stage == 'build,test y run'){
+                                gradle.call('build & test')
+                                gradle.call('run')
+                                    }else(params.compilador == 'gradle' && params.stage == 'fullbuild'){
+                                        gradle.call()
                                     }
-                        if(compilador == 'maven' && sub_stage == 'build'){
-                           // gradle.call('build & test')
-                            }else if(compilador == 'maven' && sub_stage == 'build,test;run'){
-                           //     gradle.call('build & test')
-                           //     gradle.call('run')
-                                    }else(compilador == 'maven' && sub_stage == 'fullbuild'){
-                            //            gradle.call()
-                                    }
-                            } catch(Exception e) {
-                                error ('Ha ocurrido el siguiente error: ' + e)
-                            }
-             }
- }
-            
+                       if(params.compilador == 'maven' && params.stage == 'build'){
+                            gradle.call('build & test')
+                            }else if(params.compilador == 'maven' && params.stage == 'build,test y run'){
+                                gradle.call('build & test')
+                                gradle.call('run')
+                                    }else(params.compilador == 'maven' && params.stage == 'fullbuild'){
+                                        gradle.call()
+                                    }     
 
+                        }  */
+                    }
+                }
+            }
+        }
+    } 
 return this;
-
 
    /* pipeline{
         agent any
