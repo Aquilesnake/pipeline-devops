@@ -2,7 +2,7 @@
 
 import ejecucion.groovy.*
 
-def call(String stage.params, String sub_stage.params){
+def call(Parameters stage, String sub_stage) {
 
     println 'Ejecución de Pipeline'
 
