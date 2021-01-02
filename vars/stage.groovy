@@ -2,12 +2,8 @@
 def call(){
     println 'asdasdasd aEjecución de Pipeline'
 
-    pipeline{
-        agent any
-        stages{
-            stage('pipeline'){
-                steps{
-                    script{
+            stage('cualquiewa'){
+            
                         try {
                         if(compilador == 'gradle' && sub_stage == 'build'){
                          //   gradle.call('build & test')
@@ -28,12 +24,9 @@ def call(){
                             } catch(Exception e) {
                                 error ('Ha ocurrido el siguiente error: ' + e)
                             }
-                    }
-                }
-            }
-        }
-    }
-}
+             }
+ }
+            
 
 return this;
 
