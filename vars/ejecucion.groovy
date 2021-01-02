@@ -17,7 +17,7 @@ def call(){
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
-                        if(params.stage == 'gradle' && params.sub_stage == 'build'){
+                        if(params.stage == 'gradle' && params.sub_stage == 'build') {
                             gradle.call('build & test')
                             }else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
                                 gradle.call('build & test')
