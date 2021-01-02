@@ -1,4 +1,4 @@
-import ejecucion.groovy.*
+//import ejecucion.groovy.*
 
 def call(){
 
@@ -12,10 +12,11 @@ def call(){
                 steps{
                     script{
                         echo 'herramienta seleccionada: ' + params.compilador
+                        stage.call()
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
-                        if(params.compilador == 'gradle' && params.stage == 'build'){
+                   /*     if(params.compilador == 'gradle' && params.stage == 'build'){
                             gradle.call('build & test')
                             }else if(params.compilador == 'gradle' && params.stage == 'build,test y run'){
                                 gradle.call('build & test')
@@ -23,7 +24,7 @@ def call(){
                                     }else(params.compilador == 'gradle' && params.stage == 'fullbuild'){
                                         gradle.call()
                                     }
-                        if(params.compilador == 'maven' && params.stage == 'build'){
+                       if(params.compilador == 'maven' && params.stage == 'build'){
                             gradle.call('build & test')
                             }else if(params.compilador == 'maven' && params.stage == 'build,test y run'){
                                 gradle.call('build & test')
@@ -32,7 +33,7 @@ def call(){
                                         gradle.call()
                                     }     
 
-                        }  
+                        }  */
                 }
             }
         }

@@ -1,6 +1,5 @@
 //stage.groovy
 def call(){
-
     println 'asdasdasd aEjecución de Pipeline'
 
     pipeline{
