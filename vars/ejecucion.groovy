@@ -1,7 +1,6 @@
 //import ejecucion.groovy.*
 
 def call(){
-
     pipeline {
         agent any
         parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
@@ -12,7 +11,8 @@ def call(){
                 steps{
                     script{
                         echo 'herramienta seleccionada: ' + params.compilador
-                        stage.call()
+                        def pipe = load "stage.groovy"
+                        pipe.call()
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
