@@ -25,14 +25,10 @@ def call(String compilador, String sub_stage){
                                 gradle.call('run')
                                     }else(compilador == 'maven' && sub_stage == 'fullbuild'){
                                         gradle.call()
-                                    }     
-
-                        }  
-                }
-
-                        } catch(Exception e) {
-                            error ('Ha ocurrido el siguiente error: ' + e)
-                        }
+                                    }
+                            } catch(Exception e) {
+                                error ('Ha ocurrido el siguiente error: ' + e)
+                            }
                     }
                 }
             }
