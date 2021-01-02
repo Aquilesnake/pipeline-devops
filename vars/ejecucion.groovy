@@ -1,3 +1,5 @@
+import ejecucion.groovy.*
+
 def call(){
 
     pipeline {

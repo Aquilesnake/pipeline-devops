@@ -1,15 +1,12 @@
 //stage.groovy
-
-import ejecucion.groovy.*
-
 def call(String stage, String sub_stage){
 
-    println 'Ejecución de Pipeline'
+    println 'asdasdasd aEjecución de Pipeline'
 
     pipeline{
         agent any
         stages{
-            stage('Pipeline'){
+            stage('pipeline'){
                 steps{
                     script{
                         try {
