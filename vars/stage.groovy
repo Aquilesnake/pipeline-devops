@@ -1,5 +1,5 @@
 //stage.groovy
-def call(){
+def call(java.lang.String uno, org.jenkinsci.plugins.workflow.cps.CpsClosure2 dos){
     println 'asdasdasd aEjecución de Pipeline'
 
             stage('cualquiewa'){
