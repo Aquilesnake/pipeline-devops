@@ -1,5 +1,5 @@
 //import ejecucion.groovy.*
-echo "AAAAAAAAAAAAAAAAAAAAAAA"
+echo 'AAAAAAAAAAAAAAAAAAAAAAA'
 def call(){
     
     pipeline {
