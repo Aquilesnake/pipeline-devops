@@ -1,12 +1,11 @@
 //import ejecucion.groovy.*
 
 def call(){
-    echo 'AAAAAA'
     pipeline {
         agent any
         parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
                      choice(name: 'stage', choices:['build','build;test;run','fullbuild'], description:'Construccion por stages')}
-
+echo 'AAAAAA'
         stages{
             stage('pipeline'){
                 steps{
