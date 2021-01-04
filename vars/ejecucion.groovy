@@ -1,3 +1,4 @@
+import ejecucion.groovy.*
 def call(){
    parameters{ choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
             //   choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
@@ -13,7 +14,8 @@ def call(){
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
                         if(params.compilador == 'gradle' && params.etapa == 'build'){
-                            gradle.call('build')
+                             String etapa = "build";
+                            
                             }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
                                 gradle.call('build;test;run')
                                 

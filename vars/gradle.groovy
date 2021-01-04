@@ -5,10 +5,8 @@ def ejecucion = load 'script.groovy'
 ejecucion.call()
 
 */
-import ejecucion.groovy.*
 
-def call (String compilador, String etapa){
-
+def call (String etapa){
         stage('build'){
             bat './gradlew clean build'
     }
