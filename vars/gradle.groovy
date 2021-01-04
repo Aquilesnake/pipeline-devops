@@ -1,10 +1,10 @@
 
 def call (String etapa){
-    echo "etapa"
+    echo etapa
       String[] str;
       etapa = etapa.split(';');
 [1, 2, 3,4,5].each {
-    println "Item: $etapa" // `it` is an implicit parameter corresponding to the current element
+    println "Item:"+etapa // `it` is an implicit parameter corresponding to the current element
 }
 /*switch(etapa) {
     case 'build':
