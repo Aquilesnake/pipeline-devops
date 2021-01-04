@@ -4,7 +4,7 @@
 	ejecucion.call()
 */
 
-def call (String etapa == ''){
+def call (String etapa = ''){
 
     switch(etapa) {
     case 'build':
