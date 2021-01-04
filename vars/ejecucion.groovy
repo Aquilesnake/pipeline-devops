@@ -27,7 +27,7 @@ def call(){
                                         gradle 'run';
                                         gradle 'test';
                                         gradle 'nexus';
-                                    }     
+                                        
                                         }else if(params.compilador == 'gradle' && params.etapa == ''){
                                         gradle 'build';
                                         gradle 'sonar';
