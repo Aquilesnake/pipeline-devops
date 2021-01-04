@@ -21,12 +21,12 @@ def call(){
                                         gradle.call('')
                                     }     
                         if(params.compilador == 'maven' && params.etapa == 'build'){
-                            gradle.call('build & test')
+                            maven.call('build')
                             }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
-                                gradle.call('build & test')
-                                gradle.call('run')
+                                maven.call('build;test;run')
+                               
                                     }else(params.compilador == 'maven' && params.etapa == 'fullbuild'){
-                                        gradle.call('')
+                                        maven.call('')
                                     }     
 
                         } 
