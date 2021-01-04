@@ -1,7 +1,7 @@
 def call(){
-   Parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
+   parameters{ choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
             //   choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
-            String(name:'etapa',defaultValue:'',description:'Seleccion de stage.Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease. Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
+            string(name:'etapa',defaultValue:'',description:'Seleccion de stage.Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease. Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
   pipeline {
         agent any
         stages{
