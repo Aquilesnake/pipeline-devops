@@ -1,5 +1,6 @@
 
 def call (String etapa){
+    echo "etapa"
       String[] str;
       etapa = etapa.split(';');
 [1, 2, 3,4,5].each {
