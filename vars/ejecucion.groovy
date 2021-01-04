@@ -13,7 +13,7 @@ def call(){
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
                         if(params.compilador == 'gradle' && params.etapa == 'build'){
-                            gradle.call('')
+                            return String build
                             }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
                                 gradle.call('build;test;run')
                                 
