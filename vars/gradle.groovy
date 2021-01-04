@@ -18,11 +18,12 @@ switch(etapa) {
     case 'run':
         stage('run') {
             bat 'start gradlew bootRun &'
-            sleep 20
+            sleep 10
         }
     case 'test': 
             stage('test') {
             bat 'curl -X GET http://localhost:8082/rest/mscovid/test?msg=testing'
+             sleep 10
             }
     case 'nexus': 
                 stage('nexus') {
