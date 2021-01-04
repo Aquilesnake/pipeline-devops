@@ -14,23 +14,48 @@ def call(){
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
                         if(params.compilador == 'gradle' && params.etapa == 'build'){
-                             def etapa = "build"
                              gradle "build"
                             
-                            }/*else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
-                                gradle.call('build;test;run')
+                            }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
+                                gradle 'build';
+                                gradle 'test';
+                                gradle 'run';
                                 
-                                    }else(params.compilador == 'gradle' && params.etapa == 'fullbuild'){
-                                        gradle.call('')
+                                    }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run;test;nexus'){
+                                        gradle 'build';
+                                        gradle 'sonar';
+                                        gradle 'run';
+                                        gradle 'test';
+                                        gradle 'nexus';
                                     }     
+                                        }else if(params.compilador == 'gradle' && params.etapa == ''){
+                                        gradle 'build';
+                                        gradle 'sonar';
+                                        gradle 'run';
+                                        gradle 'test';
+                                        gradle 'nexus';   
+                                            }else{
+                                            throw new Exception('Stages no ingresadas correctamente para Maven');
+                                        }   
                         if(params.compilador == 'maven' && params.etapa == 'build'){
-                            maven.call('build')
+                                maven 'build';                         
                             }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
-                                maven.call('build;test;run')
-                               
-                                    }else(params.compilador == 'maven' && params.etapa == 'fullbuild'){
-                                        maven.call('')
-                                    }    */ 
+                                    maven 'build';
+                                    maven 'test';
+                                    maven 'jar';
+                                     maven 'run';
+                                    maven 'testing';
+                                    maven 'nexus';
+                               }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
+                                    maven 'build';
+                                    maven 'test';
+                                    maven 'jar';
+                                     maven 'run';
+                                    maven 'testing';
+                                    maven 'nexus';
+                                   }else{
+                                            throw new Exception('Stages no ingresadas correctamente para Maven');
+                                        }    
                             }
                         } 
                    }
