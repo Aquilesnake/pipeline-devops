@@ -5,10 +5,10 @@ def ejecucion = load 'script.groovy'
 ejecucion.call()
 
 */
+import ejecucion.groovy
 
-
-def call (){
-        stage('build & test'){
+def call (String compilador, String etapa){
+        stage('build'){
             bat './gradlew clean build'
     }
     stage('sonar') {
@@ -21,7 +21,7 @@ def call (){
             bat 'start gradlew bootRun &'
             sleep 20
         }
-            stage('rest') {
+            stage('test') {
             bat 'curl -X GET http://localhost:8082/rest/mscovid/test?msg=testing'
             }
                 stage('nexus') {
