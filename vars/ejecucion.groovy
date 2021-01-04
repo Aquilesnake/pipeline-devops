@@ -21,40 +21,38 @@ def call(){
                                 gradle 'sonar';
                                 gradle 'run';
                                 
-                                    }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run;test;nexus'){
+                                    }else if(params.compilador == 'gradle' && params.etapa =='build;sonar;run;test;nexus'){
                                         gradle 'build';
                                         gradle 'sonar';
                                         gradle 'run';
                                         gradle 'test';
                                         gradle 'nexus';
                                         
-                                        }else if(params.compilador == 'gradle' && params.etapa == ''){
+                                        }else(params.compilador == 'gradle' && params.etapa == ''){
                                         gradle 'build';
                                         gradle 'sonar';
                                         gradle 'run';
                                         gradle 'test';
                                         gradle 'nexus';   
-                                            }else{
-                                            throw new Exception('Stages no ingresadas correctamente para gradle o se cumplieron los anteriores');
-                                        }   
+                                            }
                         if(params.compilador == 'maven' && params.etapa == 'build'){
                                 maven 'build';                         
-                            }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
+                                }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
                                     maven 'build';
                                     maven 'test';
                                     maven 'jar';
-                                     maven 'run';
+                                    maven 'run';
                                     maven 'testing';
                                     maven 'nexus';
-                               }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
+                                    }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
                                     maven 'build';
                                     maven 'test';
                                     maven 'jar';
-                                     maven 'run';
+                                    maven 'run';
                                     maven 'testing';
                                     maven 'nexus';
-                                   }else{
-                                            throw new Exception('Stages no ingresadas correctamente o se cumplieron los anteriores');
+                                        }else{
+                                        throw new Exception('Stages no ingresadas correctamente en maven o se cumplieron los anteriores');
                                         }    
                             }
                         } 
