@@ -1,7 +1,7 @@
 def call(){
-   parameters { choice(name: 'stage', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
+   parameters { choice(name: 'compilador', choices:['gradle','maven'], description:'compilador de construcion para aplicacion')
             //   choice(name: 'sub_stage', choices:['build','build,test y run','fullbuild'], description:'Construccion por stages')}
-            string(name:'Stage',defaultValue:'',description:'Seleccion de stage.Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease. Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
+            string(name:'etapa',defaultValue:'',description:'Seleccion de stage.Opciones para Gradle: Build; Sonar; Run; Test; Nexus; gitCreateRelease. Opciones para Maven: Compile; Unit; Jar; Sonar; Sonar; Test; gitCreateRelease')}
   pipeline {
         agent any
         stages{
@@ -12,24 +12,24 @@ def call(){
                         /*"${params.compilador}".call()*/
                         /*def pipe = load "${params.compilador}.groovy"
                         pipe.call()*/
-                        if(params.stage == 'gradle' && params.sub_stage == 'build'){
-                            stage.call('gradle','build & test')
-                            }/*else if(params.stage == 'gradle' && params.sub_stage == 'build,test y run'){
+                        if(params.compilador == 'gradle' && params.etapa == 'build'){
+                            gradle.call('gradle','build & test')
+                            *else if(params.compilador == 'gradle' && params.etapa == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.compilador == 'gradle' && params.sub_stage == 'fullbuild'){
+                                    }else(params.compilador == 'gradle' && params.etapa == 'fullbuild'){
                                         gradle.call('')
-                                    }               
-                        if(params.stage == 'maven' && params.sub_stage == 'build'){
+                                    }     
+                        if(params.compilador == 'maven' && params.etapa == 'build'){
                             gradle.call('build & test')
-                            }else if(params.stage == 'maven' && params.sub_stage == 'build,test y run'){
+                            }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
-                                    }else(params.stage == 'maven' && params.sub_stage == 'fullbuild'){
+                                    }else(params.compilador == 'maven' && params.etapa == 'fullbuild'){
                                         gradle.call('')
                                     }     
 
-                        }  */
+                        } 
                    }
                 }
             }
