@@ -16,9 +16,9 @@ def call(){
                         if(params.compilador == 'gradle' && params.etapa == 'build'){
                              gradle "build"
                             
-                            }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
+                            }else if(params.compilador == 'gradle' && params.etapa == 'build;sonar;run'){
                                 gradle 'build';
-                                gradle 'test';
+                                gradle 'sonar';
                                 gradle 'run';
                                 
                                     }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run;test;nexus'){
