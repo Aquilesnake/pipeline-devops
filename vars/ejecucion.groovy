@@ -17,7 +17,7 @@ def call(){
                              def etapa = "build"
                              gradle "build"
                             
-                            }else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
+                            }/*else if(params.compilador == 'gradle' && params.etapa == 'build;test;run'){
                                 gradle.call('build;test;run')
                                 
                                     }else(params.compilador == 'gradle' && params.etapa == 'fullbuild'){
@@ -30,8 +30,8 @@ def call(){
                                
                                     }else(params.compilador == 'maven' && params.etapa == 'fullbuild'){
                                         maven.call('')
-                                    }     
-
+                                    }    */ 
+                            }
                         } 
                    }
                 }
