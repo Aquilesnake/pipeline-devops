@@ -28,14 +28,14 @@ def call(){
                                         gradle 'test';
                                         gradle 'nexus';
                                         
-                                        }else(params.compilador == 'gradle' && params.etapa == ''){
+                                        }else if(params.compilador == 'gradle' && params.etapa == ''){
                                         gradle 'build';
                                         gradle 'sonar';
                                         gradle 'run';
                                         gradle 'test';
                                         gradle 'nexus';   
                                             }
-                        if(params.compilador == 'maven' && params.etapa == 'build'){
+                        else if(params.compilador == 'maven' && params.etapa == 'build'){
                                 maven 'build';                         
                                 }else if(params.compilador == 'maven' && params.etapa == 'build,test y run'){
                                     maven 'build';
