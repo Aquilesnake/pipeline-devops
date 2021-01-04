@@ -5,7 +5,6 @@ def ejecucion = load 'script.groovy'
 ejecucion.call()
 
 */
-import ejecucion.groovy
 
 def call (String compilador, String etapa){
         stage('build'){
