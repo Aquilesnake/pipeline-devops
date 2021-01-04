@@ -1,4 +1,4 @@
-
+etapa.split(';').each{ println it }
 def call (String etapa){
 etapa.split(';').each{ println it }
     echo "etapa";
