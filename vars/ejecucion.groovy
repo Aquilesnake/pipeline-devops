@@ -35,7 +35,7 @@ def call(){
                                         gradle 'test';
                                         gradle 'nexus';   
                                             }else{
-                                            throw new Exception('Stages no ingresadas correctamente para Maven');
+                                            throw new Exception('Stages no ingresadas correctamente para gradle o se cumplieron los anteriores');
                                         }   
                         if(params.compilador == 'maven' && params.etapa == 'build'){
                                 maven 'build';                         
@@ -54,7 +54,7 @@ def call(){
                                     maven 'testing';
                                     maven 'nexus';
                                    }else{
-                                            throw new Exception('Stages no ingresadas correctamente para Maven');
+                                            throw new Exception('Stages no ingresadas correctamente o se cumplieron los anteriores');
                                         }    
                             }
                         } 
