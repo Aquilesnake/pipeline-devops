@@ -6,6 +6,8 @@ def call (String etapa){
 [1, 2, 3,4,5].each {
     println "Item:"+etapa // `it` is an implicit parameter corresponding to the current element
 }
+
+etapa.split(';').each{ println it }
 /*switch(etapa) {
     case 'build':
      stage('build'){
