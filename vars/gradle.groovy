@@ -1,13 +1,13 @@
 
 def call (String etapa){
+etapa.split(';').each{ println it }
     echo "etapa";
       String[] str;
       etapa = etapa.split(';');
 [1, 2, 3,4,5].each {
-    println "Item:"+etapa // `it` is an implicit parameter corresponding to the current element
+    println "Item:"+ etapa // `it` is an implicit parameter corresponding to the current element
 }
 
-etapa.split(';').each{ println it }
 /*switch(etapa) {
     case 'build':
      stage('build'){
