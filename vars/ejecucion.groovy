@@ -14,7 +14,7 @@ def call(){
                         pipe.call()*/
                         if(params.compilador == 'gradle' && params.etapa == 'build'){
                             gradle.call('gradle','build & test')
-                            *else if(params.compilador == 'gradle' && params.etapa == 'build,test y run'){
+                            else if(params.compilador == 'gradle' && params.etapa == 'build,test y run'){
                                 gradle.call('build & test')
                                 gradle.call('run')
                                     }else(params.compilador == 'gradle' && params.etapa == 'fullbuild'){
