@@ -1,69 +1,75 @@
-/*
-	forma de invocación de método call:
-	def ejecucion = load 'script.groovy'
-	ejecucion.call()
-*/
+import pipeline.*
 
-import com.util.Constants
+def call()
+{
+	figlet 'Gradle'
 
-def call(){
-    def stages_list = Constants.STAGES_GRADLE
-    def sStages = params.STAGE
+	def arr_stages_CI = ['buildAndTest','sonar','runJar','rest','nexusCI']
+	def arr_stages_CD = ['downloadNexus','runDownloadedJar','rest','nexusCD']
 
-    util.validateStages(sStages, stages_list)
+	String rama = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim();
+	Boolean var_expresion = ((rama.indexOf('feature')>0) || (rama.indexOf('develop')>0));
 
-    def str = sStages.split(Constants.SPLIT_SYMBOL);
+	if (var_expresion == true)
+	{
+		figlet 'Continuous Integration'
+		buildAndTest()
+		sonar()
+		runJar()
+		rest()
+		nexusCI()
+	}
+	else
+	{
+		figlet 'Continuous Deploy'
+		downloadNexus()
+		runDownloadedJar()
+		rest()
+		nexusCD()
+	}
+}
 
-    for(String values : stages_list){
+def buildAndTest()
+{
+	sh "gradle clean build"
+}
 
-        switch(values){
-            case Constants.STAGE_BUILDANDTEST:
-                if(sStages.trim() == '' || str.contains(values)){
-                    stage(Constants.STAGE_BUILDANDTEST){
-                        env.STG_NAME = Constants.STAGE_BUILDANDTEST
-                        bat 'gradle clean build'
-                    }
-                }
-                break
-            case Constants.STAGE_SONAR:
-                if(sStages.trim() == '' || str.contains(values)){
-                    stage(Constants.STAGE_SONAR){
-                        env.STG_NAME = Constants.STAGE_SONAR
-                        def scannerHome = tool 'sonar-scanner';
-                        withSonarQubeEnv('sonar') {
-                            bat "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build -Dsonar.login=75a0e9b0613f563c0e69a23174cf79eb5d4d74c7"
-                        }
-                    }
-                }
-                break 
-            case Constants.STAGE_RUNJAR:
-                if(sStages.trim() == '' || str.contains(values)){
-                    stage(Constants.STAGE_RUNJAR){
-                        env.STG_NAME = Constants.STAGE_RUNJAR
-                        bat 'start gradle bootRun'
-                    }
-                }
-                break
-            case Constants.STAGE_REST:
-                if(sStages.trim() == '' || str.contains(values)){
-                    stage(Constants.STAGE_REST){
-                        env.STG_NAME = Constants.STAGE_REST
-                        sleep 20
-                        bat 'curl http://localhost:8082/rest/mscovid/estadoMundial'
-                    }
-                }
-                break
-            case Constants.STAGE_NEXUSCI:
-                if(sStages.trim() == '' || str.contains(values)){
-                    stage(Constants.STAGE_NEXUSCI){
-                        env.STG_NAME = Constants.STAGE_NEXUSCI
-                        nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'build\\libs\\DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '1.0.0']]]
-                    }
-                }
-                break
-        }
-    }
+def sonar()
+{
+	def sonarhome = tool 'sonar'
+	sh "${sonarhome}/bin/sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
+}
 
+def runJar()
+{
+	sh "nohup gradle bootRun &"
+}
+
+def rest()
+{
+	sleep 5
+	sh "curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing"
+}
+
+def downloadNexus()
+{
+    sh 'curl -X GET -u admin:criveros http://localhost:8082/repository/test-nexus/com/devopsusach2020/DevOpsUsach2020/0.0.1/DevOpsUsach2020-0.0.1.jar -O'
+}
+
+def runDownloadedJar()
+{
+    sh "java -jar DevOpsUsach2020-0.0.1.jar &"
+    sh "sleep 5"
+}
+
+def nexusCI()
+{
+	nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '3.0.1']]]
+}
+
+def nexusCD()
+{
+	nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'test-nexus', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: 'jar', filePath: 'DevOpsUsach2020-0.0.1.jar']], mavenCoordinate: [artifactId: 'DevOpsUsach2020', groupId: 'com.devopsusach2020', packaging: 'jar', version: '3.1.1']]]
 }
 
 return this;
